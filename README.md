@@ -67,11 +67,19 @@ pip install -r requirements.txt
 ## Colab Implementation
 
 ### Setup
+```
+1. Download the GitHub repository as a ZIP file to your local machine.
+2. Download the datasets from Google Drive.
+3. Copy the dataset folder to the `data` folder in the downloaded repository.
+4. Upload this code to your Google Drive.
+5. Mount the folder containing this code to Google Colab.
+6. Open the provided notebook in Google Colab.
+7. In the top panel, go to `Runtime` -> `Change runtime` -> Make sure T4 GPU is selected.
+8. Run each block in the notebook one by one.
+9. The output will be saved in the `results` folder.
 
-1. Open the provided notebook in Google Colab.
-2. In the top panel, go to `Runtime` -> `Change runtime` -> Make sure T4 GPU is selected.
-3. Run each block in the notebook one by one.
-4. The output will be saved in the `results` folder.
+Follow the steps provided in the Colab notebook for seamless execution.
+```
 
 ## Local Implementation
 
