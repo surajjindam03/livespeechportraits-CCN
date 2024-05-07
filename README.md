@@ -117,6 +117,35 @@ conda install -c conda-forge ffmpeg,
 
   Results can be found under the `results` folder.
 
+## Web App
+
+- Clone the git repository
+- Install the node modules for Backend
+  ```
+  cd backend
+  npm install
+  ```
+- Install the node modules for FrontEnd (React)
+  ```
+  cd live-speech-portraits
+  npm install
+  ```
+- Start the server
+  ```
+  cd backend
+  node server.js
+  ```
+- Start the react app
+  ```
+  cd live-speech-portraits
+  npm start
+  ```
+- Navigate to Speech Option on Navbar
+- Select a Pre trained model from the dropdown (May, Obama1, Obama2, Nadella, McStay)
+- Record or upload audio
+- Click submit to generate the video with the input audio
+- Navigate to Results Option on Navbar to see the generated output video.
+
 
 
 
