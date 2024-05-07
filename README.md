@@ -10,8 +10,7 @@ This repository contains the implementation of the following paper:
 >
 > [[Project Page]](https://yuanxunlu.github.io/projects/LiveSpeechPortraits/)    [[Paper]](https://yuanxunlu.github.io/projects/LiveSpeechPortraits/resources/SIGGRAPH_Asia_2021__Live_Speech_Portraits__Real_Time_Photorealistic_Talking_Head_Animation.pdf)    [[Arxiv]](https://arxiv.org/abs/2109.10595)    [[Web Demo]](https://replicate.ai/yuanxunlu/livespeechportraits)
 
-![Teaser](./doc/Teaser.jpg)
-
+![Teaser](backend/doc/Teaser.jpg)
 Figure 1. Given an arbitrary input audio stream, our system generates personalized and photorealistic talking-head animation in real-time. Right: May and Obama are driven by the same utterance but present different speaking characteristics.
 
 <a href="https://replicate.ai/yuanxunlu/livespeechportraits"><img src="https://img.shields.io/static/v1?label=Replicate&message=Demo and Docker Image&color=blue"></a>
