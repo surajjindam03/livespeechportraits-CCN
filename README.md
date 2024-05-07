@@ -64,6 +64,44 @@ pip install -r requirements.txt
   
 - **For the orginal links of these videos, please check issue [#7](https://github.com/YuanxunLu/LiveSpeechPortraits/issues/7).**
 
+## Colab Implementation
+
+### Setup
+
+1. Open the provided notebook in Google Colab.
+2. In the top panel, go to `Runtime` -> `Change runtime` -> Make sure T4 GPU is selected.
+3. Run each block in the notebook one by one.
+4. The output will be saved in the `results` folder.
+
+## Local Implementation
+
+### Environment Setup
+
+1. Create the environment:
+
+conda create -n LSP python=3.10.12
+conda activate LSP
+
+
+2. Install the necessary packages:
+```
+
+pip install librosa==0.10.1,
+conda install numba==0.59.1,
+pip install scikit_image==0.19.3,
+pip install opencv-python==4.8.0.76,
+pip install scipy==1.11.4,
+pip install dominate==2.9.1,
+pip install albumentations==0.5.2,
+pip install numpy==1.25.2,
+pip install beautifulsoup4==4.12.3,
+conda install cudatoolkit,
+pip install torch==2.2.1+cu121,
+pip install h5py==3.9.0,
+conda install -c conda-forge ffmpeg,
+
+```
+
   
 
 
