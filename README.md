@@ -78,10 +78,10 @@ pip install -r requirements.txt
 ### Environment Setup
 
 1. Create the environment:
-
+```
 conda create -n LSP python=3.10.12
 conda activate LSP
-
+```
 
 2. Install the necessary packages:
 ```
@@ -103,34 +103,20 @@ conda install -c conda-forge ffmpeg,
 ```
 
   
+## Demo
+
+- Download the pre-trained models and data from [Google Drive](https://drive.google.com/drive/folders/1sHc2xEEGwnb0h2rkUhG9sPmOxvRvPVpJ?usp=sharing) to the `data` folder.  Five subjects data are released (May, Obama1, Obama2, Nadella and McStay).
+
+- Run the demo:
+
+  ```
+  python demo.py --id May --driving_audio ./data/Input/00083.wav --device cuda
+  ```
+
+  Results can be found under the `results` folder.
 
 
 
-## Citation
-
-If you find this project useful for your research, please consider citing:
-
-```
-@article{lu2021live,
- author = {Lu, Yuanxun and Chai, Jinxiang and Cao, Xun},
- title = {{Live Speech Portraits}: Real-Time Photorealistic Talking-Head Animation},
- journal = {ACM Transactions on Graphics},
- numpages = {17},
- volume={40},
- number={6},
- month = December,
- year = {2021},
- doi={10.1145/3478513.3480484}
-} 
-```
-
-
-
-## Acknowledgment
-
-- This repo was built based on the framework of [pix2pix-pytorch](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix).
-- Thanks the authors of [MakeItTalk](https://github.com/adobe-research/MakeItTalk), [ATVG](https://github.com/lelechen63/ATVGnet), [RhythmicHead](https://github.com/lelechen63/Talking-head-Generation-with-Rhythmic-Head-Motion), [Speech-Driven Animation](https://github.com/DinoMan/speech-driven-animation) for making their excellent work and codes publicly available.
-- Thanks [Andreas](https://github.com/andreasjansson) for the efforts of the web demo.
 
 
 
