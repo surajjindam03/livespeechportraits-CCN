@@ -150,9 +150,199 @@ conda install -c conda-forge ffmpeg,
 - Navigate to Results Option on Navbar to see the generated output video.
 
 
+## Model Conversion to Core ML models
 
+Involves two steps:
 
+**1. Extract PyTorch Model’s TorchScript Representation Using JIT Tracer:**
+   The first step is to generate a TorchScript version of the PyTorch model. This is a way to create optimizable and serializable models using PyTorch code. TorchScript representation can be obtained using PyTorch’s JIT tracer.
+   
+**2. Convert the Traced PyTorch Model to Core ML Model:**
+  Finally, the traced model can be converted to the Core ML model using the Unified Conversion API’s convert() method. 
 
+##Code
+
+---
+import torch
+import coremltools as ct
+import sys
+sys.path.append('/content/drive/MyDrive/LiveSpeechPortraits')  # Replace '/path/to/options' with the actual path to the directory containing the 'options' module
+
+from options.test_audio2feature_options import TestOptions as FeatureOptions
+
+# Define the path for the pre-trained model weights
+model_weights_path = "/content/drive/MyDrive/LiveSpeechPortraits/data/May/checkpoints/Audio2Feature.pkl"
+
+# Parse the options
+Featopt = FeatureOptions().parse()
+
+# Load the entire model directly from the .pkl file using torch.load()
+loaded_model_state_dict = torch.load(model_weights_path, map_location=torch.device('cpu'))
+
+# Create a generic torch.nn.Module instance
+class MyModel(torch.nn.Module):
+    def _init_(self):
+        super(MyModel, self)._init_()
+
+    def forward(self, x):
+        return x
+
+# Create the model instance
+from models.audio2feature import Audio2Feature
+Audio2Feature = MyModel()
+
+# Load weights into the model
+with torch.no_grad():
+    for name, param in Audio2Feature.named_parameters():
+        param.copy_(loaded_model_state_dict[name])
+
+# Set the model to evaluation mode
+Audio2Feature.eval()
+
+# Create an example input tensor (adjust the shape based on your input)
+example_input = torch.randn(1, 512, 80)
+
+# Trace the model
+traced_model = torch.jit.trace(Audio2Feature, example_input)
+
+# Convert using Unified Conversion API
+# Optionally set minimum deployment target for older devices
+mlmodel = ct.convert(
+    traced_model,
+    inputs=[ct.TensorType(shape=example_input.shape)],
+    # minimum_deployment_target="ios13"  # Uncomment and set your target version if needed
+)
+
+# Define the path for saving the Core ML model
+coreml_model_path = "/content/drive/MyDrive/LiveSpeechPortraits/data/May"
+
+# Save the Core ML model
+mlmodel.save(coreml_model_path)
+
+print("Core ML model conversion successful!")
+---
+
+---
+# Convert the Audio2Headpose model as core ML model.
+import torch
+import coremltools as ct
+import sys
+sys.path.append('/content/drive/MyDrive/LiveSpeechPortraits')  # Replace '/path/to/options' with the actual path to the directory containing the 'options' module
+
+from options.test_audio2headpose_options import TestOptions as FeatureOptions
+
+# Define the path for the pre-trained model weights
+model_weights_path = "/content/drive/MyDrive/LiveSpeechPortraits/data/May/checkpoints/Audio2Headpose.pkl"
+
+# Parse the options
+Featopt = FeatureOptions().parse()
+
+# Load the entire model directly from the .pkl file using torch.load()
+loaded_model_state_dict = torch.load(model_weights_path, map_location=torch.device('cpu'))
+
+# Create a generic torch.nn.Module instance
+class MyModel(torch.nn.Module):
+    def _init_(self):
+        super(MyModel, self)._init_()
+
+    def forward(self, x):
+        return x
+
+# Create the model instance
+from models.audio2headpose import Audio2Headpose
+Audio2Headpose = MyModel()
+
+# Load weights into the model
+with torch.no_grad():
+    for name, param in Audio2Headpose.named_parameters():
+        param.copy_(loaded_model_state_dict[name])
+
+# Set the model to evaluation mode
+Audio2Headpose.eval()
+
+# Create an example input tensor (adjust the shape based on your input)
+example_input = torch.randn(1, 512, 80)
+
+# Trace the model
+traced_model = torch.jit.trace(Audio2Headpose, example_input)
+
+# Convert using Unified Conversion API
+# Optionally set minimum deployment target for older devices
+mlmodel = ct.convert(
+    traced_model,
+    inputs=[ct.TensorType(shape=example_input.shape)],
+    # minimum_deployment_target="ios13"  # Uncomment and set your target version if needed
+)
+
+# Define the path for saving the Core ML model
+coreml_model_path = "/content/drive/MyDrive/LiveSpeechPortraits/coreml"
+
+# Save the Core ML model
+mlmodel.save(coreml_model_path)
+
+print("Core ML model conversion successful!")
+---
+
+---
+# Convert the Feature2Face model as core ML model.
+import torch
+import coremltools as ct
+import sys
+sys.path.append('/content/drive/MyDrive/LiveSpeechPortraits')  # Replace '/path/to/options' with the actual path to the directory containing the 'options' module
+
+from options.test_feature2face_options import TestOptions as FeatureOptions
+
+# Define the path for the pre-trained model weights
+model_weights_path = "/content/drive/MyDrive/LiveSpeechPortraits/data/May/checkpoints/Feature2Face.pkl"
+
+# Parse the options
+Featopt = FeatureOptions().parse()
+
+# Load the entire model directly from the .pkl file using torch.load()
+loaded_model_state_dict = torch.load(model_weights_path, map_location=torch.device('cpu'))
+
+# Create a generic torch.nn.Module instance
+class MyModel(torch.nn.Module):
+    def _init_(self):
+        super(MyModel, self)._init_()
+
+    def forward(self, x):
+        return x
+
+# Create the model instance
+from models.feature2face import Feature2Face
+Feature2Face = MyModel()
+
+# Load weights into the model
+with torch.no_grad():
+    for name, param in Feature2Face.named_parameters():
+        param.copy_(loaded_model_state_dict[name])
+
+# Set the model to evaluation mode
+Feature2Face.eval()
+
+# Create an example input tensor (adjust the shape based on your input)
+example_input = torch.randn(1, 512, 80)
+
+# Trace the model
+traced_model = torch.jit.trace(Feature2Face, example_input)
+
+# Convert using Unified Conversion API
+# Optionally set minimum deployment target for older devices
+mlmodel = ct.convert(
+    traced_model,
+    inputs=[ct.TensorType(shape=example_input.shape)],
+    # minimum_deployment_target="ios13"  # Uncomment and set your target version if needed
+)
+
+# Define the path for saving the Core ML model
+coreml_model_path = "/content/drive/MyDrive/LiveSpeechPortraits/featuretofaceml"
+
+# Save the Core ML model
+mlmodel.save(coreml_model_path)
+
+print("Core ML model conversion successful!")
+---
 
 
 
