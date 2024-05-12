@@ -162,7 +162,7 @@ Involves two steps:
 
 ##Code
 
----
+```
 import torch
 import coremltools as ct
 import sys
@@ -220,9 +220,9 @@ coreml_model_path = "/content/drive/MyDrive/LiveSpeechPortraits/data/May"
 mlmodel.save(coreml_model_path)
 
 print("Core ML model conversion successful!")
----
+```
 
----
+```
 # Convert the Audio2Headpose model as core ML model.
 import torch
 import coremltools as ct
@@ -281,9 +281,9 @@ coreml_model_path = "/content/drive/MyDrive/LiveSpeechPortraits/coreml"
 mlmodel.save(coreml_model_path)
 
 print("Core ML model conversion successful!")
----
+```
 
----
+```
 # Convert the Feature2Face model as core ML model.
 import torch
 import coremltools as ct
@@ -342,7 +342,7 @@ coreml_model_path = "/content/drive/MyDrive/LiveSpeechPortraits/featuretofaceml"
 mlmodel.save(coreml_model_path)
 
 print("Core ML model conversion successful!")
----
+```
 
 
 
